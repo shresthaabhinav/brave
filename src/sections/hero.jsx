@@ -1,4 +1,5 @@
 "use client";
+import ParticlesBackground from "@/components/particlesBackground";
 import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -58,6 +59,7 @@ export default function Hero() {
         className="relative w-full min-h-screen flex items-center justify-center bg-cover bg-center"
         style={{ backgroundImage: "url('/img/curve.png')" }}
       >
+        <ParticlesBackground/>
         <div className="absolute inset-0" />
 
         <div className="relative z-10 flex items-center justify-center w-full h-full">
@@ -72,9 +74,15 @@ export default function Hero() {
   >
     EMPOWERING PROGRESS THROUGH
     <br />
-    <span className="inline-block font-mono tracking-tight text-[#7C3AED]">
-      <ScrambleText text="INTEGRATED TECHNOLOGY" trigger={scramble} duration={1200} />
-    </span>
+    <span
+  className="inline-block font-mono tracking-tight bg-gradient-to-r from-[#7C3AED] to-[#E79736] bg-clip-text text-transparent"
+>
+  <ScrambleText
+    text="INTEGRATED TECHNOLOGY"
+    trigger={scramble}
+    duration={1200}
+  />
+</span>
   </motion.h1>
 </div>
 
