@@ -102,7 +102,7 @@ export default function TechStack() {
           viewport={{ once: true, amount: 0.5 }}
           className="text-4xl sm:text-5xl md:text-6xl font-semibold text-black"
         >
-          Our <span style={{ color: "#999999" }}>Tech</span> Stack
+          Our <span style={{ color: "#7C3AED" }}>Tech</span> Stack
         </motion.h1>
       </div>
 

@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
@@ -14,66 +15,70 @@ import {
 const slides = [
   {
     left: {
-      img: "/img2/ai.jpg",
-      title: "AI Solutions",
-      desc: "Leverage cutting-edge artificial intelligence to automate and scale your business.",
+      img: "/img2/software.jpg",
+      title: "Custom Software Development",
+      href: "/service",
+      desc: "Tailor-made applications built to automate your unique workflows. We develop scalable ERPs, CRMs, and management tools that solve specific operational challenges and improve efficiency.",
     },
     right: {
-      img: "/img2/cloud.jpg",
-      title: "Cloud Services",
-      desc: "Reliable cloud infrastructure tailored for performance, security, and scalability.",
+      img: "/img2/web.jpg",
+      title: "Professional Web Development",
+      href: "/service",
+      desc: "High-speed, responsive, and secure websites that serve as your 24/7 storefront. From corporate landing pages to complex e-commerce platforms, we build for performance and conversion.",
     },
   },
   {
     left: {
-      img: "/img2/cyber.jpg",
-      title: "Cybersecurity",
-      desc: "Protect your systems and data with enterprise-grade security protocols and audits.",
+      img: "/img2/ui.jpg",
+      title: "UI/UX Design",
+      href: "/service",
+      desc: "User-centric design focused on intuition and aesthetics. We create seamless digital interfaces that enhance user satisfaction, reduce friction, and strengthen brand loyalty.",
     },
     right: {
       img: "/img2/mobile.jpg",
-      title: "Mobile Development",
-      desc: "Beautiful, fast cross-platform apps built for iOS and Android.",
+      title: "Digital Marketing & Ad Campaigns",
+      href: "/service",
+      desc: "Data-driven strategies to amplify your reach. We manage end-to-end SEO, social media growth, and high-ROI Google/Meta ad campaigns to turn browsers into buyers.",
     },
   },
   {
     left: {
-      img: "/img2/skill.jpg",
-      title: "Skill Augmentation",
-      desc: "On-demand expert talent to extend your team quickly and cost-effectively.",
+      img: "/img2/video.jpg",
+      title: "Professional Video Production",
+      href: "/service",
+      desc: "High-impact visual storytelling for the digital age. We provide 4K video editing, motion graphics, and corporate videography to elevate your brand’s social media and television presence.",
     },
     right: {
-      img: "/img2/software.jpg",
-      title: "Software Development",
-      desc: "End-to-end software solutions crafted with modern stacks and quality assurance.",
+      img: "/img2/hardware.jpg",
+      title: "IT Infrastructure & Hardware",
+      href: "/service",
+      desc: "The physical backbone of your office. We handle structured cabling, server room setup, networking architecture, and advanced security system installations.",
     },
   },
 ];
 
-function ServiceCard({ img, title, desc }) {
+function ServiceCard({ img, title, desc, href }) {
   return (
-    <div className="relative w-[320px] md:w-[370px] h-[260px] md:h-[290px] rounded-2xl overflow-hidden shadow-md flex-shrink-0 group transform-gpu will-change-transform">
-      {/* Image (optimized) */}
+    <Link
+      href={href}
+      className="relative w-[320px] md:w-[370px] h-[260px] md:h-[290px] rounded-2xl overflow-hidden shadow-md flex-shrink-0 group transform-gpu will-change-transform block cursor-pointer"
+    >
       <Image
         src={img}
         alt={title}
         fill
         sizes="(max-width: 768px) 100vw, 370px"
         className="object-cover transition-transform duration-500 md:group-hover:scale-[1.02]"
-        priority={false}
       />
 
-      {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent md:group-hover:opacity-0 transition-opacity duration-300" />
 
-      {/* Title */}
       <div className="absolute bottom-4 left-5 right-5 md:group-hover:opacity-0 transition-opacity duration-300">
         <h3 className="text-white font-bold text-[15px] md:text-[17px] drop-shadow">
           {title}
         </h3>
       </div>
 
-      {/* Hover Content */}
       <div className="absolute inset-0 bg-black/70 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center px-6 text-center gap-3">
         <div className="w-6 h-[2px] bg-white/60" />
         <h3 className="text-white font-bold text-[18px]">{title}</h3>
@@ -81,7 +86,7 @@ function ServiceCard({ img, title, desc }) {
           {desc}
         </p>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -96,7 +101,6 @@ export default function Services() {
 
   return (
     <div id="services" className="relative w-full flex flex-col">
-      {/* TOP SECTION */}
       <div className="relative w-full max-w-[2000px] mx-auto overflow-hidden">
         <Image
           src="/img/coworkers.jpg"
@@ -108,27 +112,21 @@ export default function Services() {
         <div className="absolute inset-0 bg-black/50" />
 
         <div className="relative z-10 px-4 md:px-10 lg:px-16 pt-14 pb-52 flex flex-col md:flex-row gap-6 text-white">
-          <div className="md:flex-[3]">
-            <h1 className="font-bold text-[26px] md:text-[34px] leading-tight">
-              Our Expertise Crafting Results-Driven <br />
-              Campaigns For Digital Marketing
+          <div>
+            <h1 className="font-bold text-[26px] md:text-[42px] leading-tight">
+              Our Expertise
+              <br />
+              <span className="font-medium text-[16px]">
+                Integrated solutions designed for high-performance business
+                growth.
+              </span>
             </h1>
-          </div>
-
-          <div className="md:flex-[2] flex items-end">
-            <p className="text-gray-200 text-sm leading-relaxed">
-              Our expertise lies in crafting data-driven digital marketing
-              campaigns that boost brand visibility, engage audiences, and
-              deliver measurable business growth across multiple platforms.
-            </p>
           </div>
         </div>
       </div>
 
-      {/* WHITE SPACER */}
       <div className="bg-white h-32 md:h-44 w-full" />
 
-      {/* CAROUSEL */}
       <div className="absolute bottom-0 left-0 right-0 h-[300px] md:h-[340px] flex items-center">
         <div className="max-w-[2000px] mx-auto w-full px-4 md:px-10 lg:px-16">
           <Carousel
@@ -139,14 +137,11 @@ export default function Services() {
             <CarouselContent>
               {slides.map((slide, index) => (
                 <CarouselItem key={index}>
-                  {/* Responsive layout */}
                   <div className="flex justify-center items-center gap-8 md:gap-16">
-                    {/* Show 1 card on mobile */}
                     <div className="block md:hidden">
                       <ServiceCard {...slide.left} />
                     </div>
 
-                    {/* Show 2 cards on desktop */}
                     <div className="hidden md:flex gap-16">
                       <ServiceCard {...slide.left} />
                       <ServiceCard {...slide.right} />
@@ -156,8 +151,7 @@ export default function Services() {
               ))}
             </CarouselContent>
 
-            {/* Controls */}
-            <CarouselPrevious className="text-black border-black/80 bg-white hover:bg-black/20 -left-2 " />
+            <CarouselPrevious className="text-black border-black/80 bg-white hover:bg-black/20 -left-2" />
             <CarouselNext className="text-black border-black/80 bg-white hover:bg-black/20 -right-2" />
           </Carousel>
         </div>

@@ -2,47 +2,6 @@
 import { motion } from "framer-motion";
 import React from "react";
 
-const features = [
-  {
-    icon: (
-      <svg
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <rect x="3" y="3" width="18" height="18" rx="2" />
-        <path d="M3 9h18M9 21V9" />
-      </svg>
-    ),
-    title: "Strategic Planning",
-    desc: "We analyze resources, risks, and opportunities to make decisions.",
-  },
-  {
-    icon: (
-      <svg
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="12" cy="12" r="9" />
-        <path d="M9 12l2 2 4-4" />
-      </svg>
-    ),
-    title: "Project Execution",
-    desc: "We monitor progress, resolves issues, and ensures successful project delivery.",
-  },
-];
-
 // Replace these src values with your actual image imports or paths
 const images = [
   { src: "/img/About1.jpg", alt: "Team planning session", tall: true },
@@ -67,11 +26,11 @@ export default function AboutSection() {
           viewport={{ once: true, amount: 0.5 }}
           className="text-4xl sm:text-5xl md:text-6xl font-semibold text-black"
         >
-          About <span style={{ color: "#999999" }}>Us</span>
+          About <span style={{ color: "#7C3AED" }}>Us</span>
         </motion.h1>
       </div>
+
       <section id="about" className="about-section">
-        {/* ── Image grid ─────────────────────────────── */}
         <motion.div
           className="about-grid"
           initial="hidden"
@@ -79,7 +38,6 @@ export default function AboutSection() {
           viewport={{ once: true, amount: 0.2 }}
           variants={{ show: { transition: { staggerChildren: 0.12 } } }}
         >
-          {/* Column 1 — tall top, short bottom */}
           <div className="img-col">
             <motion.div
               variants={fadeUp}
@@ -97,7 +55,6 @@ export default function AboutSection() {
             </motion.div>
           </div>
 
-          {/* Column 2 — short top, tall bottom */}
           <div className="img-col">
             <motion.div
               variants={fadeUp}
@@ -116,7 +73,6 @@ export default function AboutSection() {
           </div>
         </motion.div>
 
-        {/* ── Text content ───────────────────────────── */}
         <motion.div
           className="about-content"
           initial="hidden"
@@ -129,170 +85,157 @@ export default function AboutSection() {
             transition={{ duration: 0.6 }}
             className="about-heading"
           >
-            Elevate Your Brand in
-            <br />
-            Digital Landscape
+            DD Digital World
           </motion.h2>
 
-          <div className="features">
-            {features.map((f) => (
-              <motion.div
-                key={f.title}
-                variants={fadeUp}
-                transition={{ duration: 0.6 }}
-                className="feature-item"
-              >
-                <div className="feature-icon">{f.icon}</div>
-                <div>
-                  <h3 className="feature-title">{f.title}</h3>
-                  <p className="feature-desc">{f.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            variants={fadeUp}
+            transition={{ duration: 0.6 }}
+            className="about-text"
+          >
+            <p className="text-justify">
+              DD Digital World is a premier technology solutions provider
+              dedicated to building the future of business infrastructure. We
+              specialize in delivering a seamless, "360-degree" IT ecosystem—
+              bridging the gap between robust physical hardware and
+              sophisticated digital strategy.
+            </p>
+
+            <p className="text-justify">
+              In today's fast-paced market, businesses often struggle with
+              fragmented systems. We solve that by providing a single point of
+              accountability for everything from server installation and custom
+              software development to high-impact digital marketing.
+            </p>
+
+            <p className="text-justify">
+              Our mission is to simplify complexity, allowing you to focus on
+              your core business while we ensure your technology is fast,
+              secure, and scalable.
+            </p>
+          </motion.div>
         </motion.div>
 
         <style>{`
-        .about-section {
-          display: flex;
-          align-items: center;
-          gap: 80px;
-          padding: 0px 80px 100px 80px;
-          max-width: 1400px;
-          margin: 0 auto;
-        }
-
-        /* ── Image grid ── */
-        .about-grid {
-          display: flex;
-          gap: 20px;
-          flex-shrink: 0;
-        }
-
-        .img-col {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .img-wrap {
-          border-radius: 16px;
-          overflow: hidden;
-          width: 260px;
-        }
-        .img-wrap.tall  { height: 320px; }
-        .img-wrap.short { height: 220px; }
-
-        /* second column offset upward */
-        .img-col:nth-child(2) {
-          margin-top: 48px;
-        }
-
-        .img-wrap img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-          transition: transform 0.4s ease;
-        }
-        .img-wrap:hover img {
-          transform: scale(1.04);
-        }
-
-        /* ── Text ── */
-        .about-content {
-          display: flex;
-          flex-direction: column;
-          gap: 40px;
-          max-width: 520px;
-        }
-
-        .about-heading {
-          font-size: clamp(2rem, 3.5vw, 2.8rem);
-          font-weight: 700;
-          line-height: 1.2;
-          color: #111;
-          margin: 0;
-        }
-
-        .features {
-          display: flex;
-          flex-direction: column;
-          gap: 32px;
-        }
-
-        .feature-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 20px;
-        }
-
-        .feature-icon {
-          flex-shrink: 0;
-          width: 56px;
-          height: 56px;
-          border: 1.5px solid #ddd;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #111;
-          margin-top: 2px;
-        }
-
-        .feature-title {
-          font-size: 1.35rem;
-          font-weight: 700;
-          color: #111;
-          margin: 0 0 8px;
-        }
-
-        .feature-desc {
-          font-size: 1rem;
-          color: #555;
-          line-height: 1.6;
-          margin: 0;
-          max-width: 360px;
-        }
-
-        /* ── Responsive ── */
-        @media (max-width: 1024px) {
           .about-section {
-            gap: 48px;
-            padding: 60px 40px;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            padding: 0px 80px 100px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
           }
-          .img-wrap {
-            width: 200px;
-          }
-          .img-wrap.tall  { height: 260px; }
-          .img-wrap.short { height: 180px; }
-          .about-heading {
-            font-size: 2rem;
-          }
-        }
 
-        @media (max-width: 768px) {
-          .about-section {
+          .about-grid {
+            display: flex;
+            gap: 20px;
+            flex-shrink: 0;
+          }
+
+          .img-col {
+            display: flex;
             flex-direction: column;
-            padding: 48px 24px;
-            gap: 48px;
+            gap: 20px;
           }
-          .about-content {
-            max-width: 100%;
-          }
+
           .img-wrap {
-            width: 160px;
+            border-radius: 16px;
+            overflow: hidden;
+            width: 260px;
           }
-          .img-wrap.tall  { height: 200px; }
-          .img-wrap.short { height: 140px; }
-          .feature-title {
-            font-size: 1.2rem;
+
+          .img-wrap.tall { height: 320px; }
+          .img-wrap.short { height: 220px; }
+
+          .img-col:nth-child(2) {
+            margin-top: 48px;
           }
-          .feature-desc {
-            font-size: 0.95rem;
+
+          .img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
           }
-        }
-      `}</style>
+
+          .img-wrap:hover img {
+            transform: scale(1.04);
+          }
+
+          .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            max-width: 560px;
+          }
+
+          .about-heading {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  background: linear-gradient(90deg, #7C3AED 0%, #E79736 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+          .about-text {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+          }
+
+          .about-text p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.8;
+            margin: 0;
+          }
+
+          @media (max-width: 1024px) {
+            .about-section {
+              gap: 48px;
+              padding: 60px 40px;
+            }
+
+            .img-wrap {
+              width: 200px;
+            }
+
+            .img-wrap.tall { height: 260px; }
+            .img-wrap.short { height: 180px; }
+
+            .about-heading {
+              font-size: 2rem;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .about-section {
+              flex-direction: column;
+              padding: 48px 24px;
+              gap: 48px;
+            }
+
+            .about-content {
+              max-width: 100%;
+            }
+
+            .img-wrap {
+              width: 160px;
+            }
+
+            .img-wrap.tall { height: 200px; }
+            .img-wrap.short { height: 140px; }
+
+            .about-text p {
+              font-size: 0.95rem;
+            }
+          }
+        `}</style>
       </section>
     </>
   );

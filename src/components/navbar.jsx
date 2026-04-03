@@ -3,6 +3,7 @@
 import { FaHome } from "react-icons/fa";
 import { useState, useEffect, useRef } from "react";
 import OverlayMenu from "./overlayMenu";
+import Image from "next/image";
 
 const links = [
   { target: "about", label: "About" },
@@ -12,7 +13,6 @@ const links = [
   { target: "contact", label: "Contact" },
 ];
 
-// All sections including hero — order matters for priority
 const allSections = ["hero", ...links.map((l) => l.target)];
 
 export default function Navbar({ sectionRefs = {} }) {
@@ -62,7 +62,6 @@ export default function Navbar({ sectionRefs = {} }) {
       setActive("hero");
       return;
     }
-
     const section =
       sectionRefs[target]?.current || document.getElementById(target);
     if (!section) return;
@@ -70,14 +69,12 @@ export default function Navbar({ sectionRefs = {} }) {
     setActive(target);
   };
 
-  // Resolve highlight target: hero → home icon, others → link el
   const resolveEl = (target) => {
     if (target === "hero") return homeRef.current;
     const index = links.findIndex((l) => l.target === target);
     return index !== -1 ? linkRefs.current[index] : null;
   };
 
-  // Sync highlight whenever active changes
   useEffect(() => {
     const el = resolveEl(active);
     if (!el) return;
@@ -88,7 +85,6 @@ export default function Navbar({ sectionRefs = {} }) {
     setHighlight(next);
   }, [active]);
 
-  // Initial highlight on mount
   useEffect(() => {
     if (!isMobile && homeRef.current && navRef.current) {
       const pos = getOffset(homeRef.current);
@@ -99,7 +95,6 @@ export default function Navbar({ sectionRefs = {} }) {
     }
   }, [isMobile]);
 
-  // Intersection Observer — watches hero + all named sections
   useEffect(() => {
     const sectionEls = allSections
       .map((name) => {
@@ -118,14 +113,12 @@ export default function Navbar({ sectionRefs = {} }) {
               (k) => sectionRefs[k]?.current === entry.target,
             );
           if (!sectionName) return;
-
           if (entry.isIntersecting) {
             intersectingSet.current.add(sectionName);
           } else {
             intersectingSet.current.delete(sectionName);
           }
         });
-
         const current = allSections.find((name) =>
           intersectingSet.current.has(name),
         );
@@ -141,6 +134,53 @@ export default function Navbar({ sectionRefs = {} }) {
   return (
     <>
       <style>{`
+        .nav-logo-wrap {
+          position: fixed;
+          top: 24px;
+          left: 24px;
+          z-index: 50;
+        }
+
+        .nav-logo {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          text-decoration: none;
+          flex-shrink: 0;
+          cursor: pointer;
+          background: transparent;
+          border: none;
+          padding: 0;
+        }
+
+        .nav-logo-icon {
+          width: 52px;
+          height: 52px;
+          border-radius: 10px;
+          overflow: hidden;
+          flex-shrink: 0;
+        }
+
+        .nav-logo-text {
+          font-size: 20px;
+          font-weight: 700;
+          background: linear-gradient(90deg, #7C3AED 0%, #E79736 100%);
+          letter-spacing: -0.4px;
+          white-space: nowrap;
+          line-height: 1.15;
+          margin-top: 16px;
+          padding-bottom: 2px;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          color: transparent;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+
         .navbar-wrap {
           position: fixed;
           top: 24px;
@@ -182,7 +222,9 @@ export default function Navbar({ sectionRefs = {} }) {
           height: 36px;
           border-radius: 50%;
           color: #ffffff;
-          text-decoration: none;
+          background: transparent;
+          border: none;
+          cursor: pointer;
         }
 
         .nav-divider {
@@ -199,12 +241,22 @@ export default function Navbar({ sectionRefs = {} }) {
           font-size: 12px;
           text-transform: uppercase;
           color: #f0f0f0;
-          text-decoration: none;
+          background: transparent;
+          border: none;
+          cursor: pointer;
           transition: color 0.2s ease;
         }
 
         .nav-link:hover { color: rgba(255,255,255,0.95); }
         .nav-link.active { color: #fff; }
+
+        .navbar-mobile-wrap {
+          position: fixed;
+          top: 24px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 50;
+        }
 
         .navbar-mobile {
           display: flex;
@@ -227,7 +279,9 @@ export default function Navbar({ sectionRefs = {} }) {
           height: 36px;
           border-radius: 50%;
           color: rgba(255,255,255,0.6);
-          text-decoration: none;
+          background: transparent;
+          border: none;
+          cursor: pointer;
         }
 
         .mob-divider {
@@ -261,53 +315,74 @@ export default function Navbar({ sectionRefs = {} }) {
 
       {/* DESKTOP */}
       {!isMobile && (
-        <div className="navbar-wrap">
-          <nav
-            ref={navRef}
-            className={`navbar${scrolled ? " scrolled" : ""}`}
-            onMouseLeave={restoreActive}
-          >
-            <div
-              className="nav-highlight"
-              style={{
-                left: highlight.left,
-                width: highlight.width,
-                opacity: highlight.opacity,
-              }}
-            />
-
+        <>
+          <div className="nav-logo-wrap">
             <button
-              ref={homeRef}
-              className="nav-home"
-              onMouseEnter={() => moveTo(homeRef.current)}
-              onClick={() => scrollToSection("hero")}
+              className="nav-logo"
+              onClick={() => window.location.assign("/")}
               type="button"
             >
-              <FaHome />
+              <div className="nav-logo-icon">
+                <Image
+                  src="/logo/logoo.png"
+                  width={52}
+                  height={52}
+                  alt="DDL logo"
+                  style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                />
+              </div>
+              <span className="nav-logo-text">DD Digital World</span>
             </button>
+          </div>
 
-            <div className="nav-divider" />
+          <div className="navbar-wrap">
+            <nav
+              ref={navRef}
+              className={`navbar${scrolled ? " scrolled" : ""}`}
+              onMouseLeave={restoreActive}
+            >
+              <div
+                className="nav-highlight"
+                style={{
+                  left: highlight.left,
+                  width: highlight.width,
+                  opacity: highlight.opacity,
+                }}
+              />
 
-            {links.map(({ target, label }, i) => (
               <button
-                key={target}
-                ref={(el) => (linkRefs.current[i] = el)}
-                className={`nav-link${active === target ? " active" : ""}`}
-                onClick={() => scrollToSection(target)}
-                onMouseEnter={() => moveTo(linkRefs.current[i])}
+                ref={homeRef}
+                className="nav-home"
+                onMouseEnter={() => moveTo(homeRef.current)}
+                onClick={() => scrollToSection("hero")}
                 type="button"
               >
-                {label}
+                <FaHome />
               </button>
-            ))}
-          </nav>
-        </div>
+
+              <div className="nav-divider" />
+
+              {links.map(({ target, label }, i) => (
+                <button
+                  key={target}
+                  ref={(el) => (linkRefs.current[i] = el)}
+                  className={`nav-link${active === target ? " active" : ""}`}
+                  onClick={() => scrollToSection(target)}
+                  onMouseEnter={() => moveTo(linkRefs.current[i])}
+                  type="button"
+                >
+                  {label}
+                </button>
+              ))}
+            </nav>
+          </div>
+        </>
       )}
 
       {/* MOBILE */}
       {isMobile && (
         <>
-          <div className="navbar-wrap">
+          <div className="navbar-mobile-wrap">
             <div className={`navbar-mobile${scrolled ? " scrolled" : ""}`}>
               <button
                 className="mob-home"

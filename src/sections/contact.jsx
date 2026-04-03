@@ -16,7 +16,7 @@ export default function Contact() {
           viewport={{ once: true, amount: 0.5 }}
           className="text-4xl sm:text-5xl md:text-6xl font-semibold text-black"
         >
-          Contact <span style={{ color: "#999999" }}>Us</span>
+          Contact <span style={{ color: "#7C3AED" }}>Us</span>
         </motion.h1>
         <p className="text-gray-500 text-sm sm:text-base">
             Let’s build something great together
@@ -29,7 +29,7 @@ export default function Contact() {
 
           {/* LEFT - FORM */}
           <div className="flex-1 border border-gray-200 rounded-2xl p-8 shadow-sm">
-            <h2 className="text-2xl font-semibold mb-6">Get In Touch</h2>
+            <h2 className="text-2xl text-[#7C3AED] font-semibold mb-6">Get In Touch</h2>
 
             <form className="space-y-5">
 
@@ -73,7 +73,7 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="bg-black text-white px-6 py-4 rounded-lg hover:bg-gray-900 transition font-medium"
+                className="bg-[#7C3AED] text-white px-6 py-3 rounded-lg hover:bg-[#9C6BF1] transition font-medium"
               >
                 Send Message
               </button>
@@ -94,7 +94,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-semibold">Office</h3>
-                  <p className="text-gray-600 text-sm">Sitapaila, Kathmandu</p>
+                  <p className="text-gray-600 text-sm">Kathmandu, Nepal</p>
                 </div>
               </div>
 
@@ -106,7 +106,7 @@ export default function Contact() {
                 <div>
                   <h3 className="font-semibold">Email</h3>
                   <p className="text-gray-600 text-sm">
-                    hi@conceptualframe.com
+                    sonish@gmail.com
                   </p>
                 </div>
               </div>

@@ -64,19 +64,19 @@ export default function Hero() {
           <div className="mt-2 lg:mt-12 p-10 sm:p-16 flex flex-col items-center text-center w-full max-w-2xl">
             {/* Headline */}
             <div className="leading-none">
-              <motion.h1
-                className="text-xl sm:text-3xl md:text-5xl lg:text-8xl mb-6 leading-tight text-black lg:whitespace-nowrap"
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.2 }}
-              >
-                SCALE YOUR BUSINESS WITH
-                <br />
-                <span className="inline-block font-mono tracking-tight">
-                  <ScrambleText text="EXPERT IT TALENT" trigger={scramble} duration={1800} />
-                </span>
-              </motion.h1>
-            </div>
+  <motion.h1
+    className="text-xl sm:text-3xl md:text-5xl lg:text-[64px] font-semibold mb-6 leading-tight text-[#1F1F24] lg:whitespace-nowrap"
+    initial={{ opacity: 0, y: 40 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 1, delay: 0.2 }}
+  >
+    EMPOWERING PROGRESS THROUGH
+    <br />
+    <span className="inline-block font-mono tracking-tight text-[#7C3AED]">
+      <ScrambleText text="INTEGRATED TECHNOLOGY" trigger={scramble} duration={1200} />
+    </span>
+  </motion.h1>
+</div>
 
             {/* Tagline */}
             <motion.p
@@ -85,8 +85,9 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.2 }}
             >
-              Trusted skill augmentation services designed for your success <br />
-              Software development, Cybersecurity, Dedicated resources and more
+              "360-degree" IT ecosystem—bridging the gap between robust
+              <br />
+               physical hardware and sophisticated digital strategy.
             </motion.p>
 
             {/* Buttons */}
@@ -99,18 +100,18 @@ export default function Hero() {
               {/* Primary */}
               <a
                 href="#about"
-                className="relative px-8 py-3 text-xs tracking-widest uppercase font-medium text-white bg-black border border-white/20 overflow-hidden group transition"
+                className="relative px-8 py-3 text-xs tracking-widest uppercase font-medium text-white bg-[#7C3AED] border border-white/20 overflow-hidden group transition"
               >
                 <span className="relative z-10 group-hover:text-white transition">
                   Get Started
                 </span>
-                <span className="absolute inset-0 bg-zinc-800 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
+                <span className="absolute inset-0 bg-[#6418E5] scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
               </a>
 
               {/* Secondary */}
               <a
                 href="#contact"
-                className="relative px-6 py-3 text-xs border border-black tracking-widest uppercase font-medium text-black transition group hover:bg-black hover:text-white"
+                className="relative px-6 py-3 text-xs border border-[#7C3AED] tracking-widest uppercase font-medium text-[#7C3AED] transition group hover:bg-[#7C3AED] hover:text-white"
               >
                 Our Work
               </a>
