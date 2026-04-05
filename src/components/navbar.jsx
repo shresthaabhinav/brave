@@ -174,11 +174,16 @@ export default function Navbar({ sectionRefs = {} }) {
           -webkit-text-fill-color: transparent;
           background-clip: text;
           color: transparent;
-
+          transition: opacity 0.3s ease, transform 0.3s ease;
           display: flex;
           justify-content: center;
           align-items: center;
           text-align: center;
+        }
+        .nav-logo-text.hidden {
+          opacity: 0;
+          transform: translateX(-6px);
+          pointer-events: none;
         }
 
         .navbar-wrap {
@@ -331,7 +336,7 @@ export default function Navbar({ sectionRefs = {} }) {
                   style={{ objectFit: "cover", width: "100%", height: "100%" }}
                 />
               </div>
-              <span className="nav-logo-text">DD Digital World</span>
+              <span className={`nav-logo-text${scrolled ? " hidden" : ""}`}>DD Digital World</span>
             </button>
           </div>
 
