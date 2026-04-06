@@ -385,36 +385,55 @@ export default function Navbar({ sectionRefs = {} }) {
       )}
 
       {/* MOBILE */}
-      {isMobile && (
-        <>
-          <div className="navbar-mobile-wrap">
-            <div className={`navbar-mobile${scrolled ? " scrolled" : ""}`}>
-              <button
-                className="mob-home"
-                onClick={() => scrollToSection("hero")}
-                type="button"
-              >
-                <FaHome />
-              </button>
-              <div className="mob-divider" />
-              <button
-                className="mob-bars"
-                onClick={() => overlayRef.current?.openMenu()}
-                type="button"
-              >
-                <span className="mob-bar" />
-                <span className="mob-bar" />
-                <span className="mob-bar" />
-              </button>
-            </div>
-          </div>
-          <OverlayMenu
-            ref={overlayRef}
-            sectionRefs={sectionRefs}
-            onNavigate={setActive}
+{isMobile && (
+  <>
+    <div className="nav-logo-wrap">
+      <button
+        className="nav-logo"
+        onClick={() => window.location.assign("/")}
+        type="button"
+      >
+        <div className="nav-logo-icon">
+          <Image
+            src="/logo/logoo.png"
+            width={52}
+            height={52}
+            alt="DDL logo"
+            style={{ objectFit: "cover", width: "100%", height: "100%" }}
           />
-        </>
-      )}
+        </div>
+        {/* No text span here — icon only on mobile */}
+      </button>
+    </div>
+
+    <div className="navbar-mobile-wrap">
+      <div className={`navbar-mobile${scrolled ? " scrolled" : ""}`}>
+        <button
+          className="mob-home"
+          onClick={() => scrollToSection("hero")}
+          type="button"
+        >
+          <FaHome />
+        </button>
+        <div className="mob-divider" />
+        <button
+          className="mob-bars"
+          onClick={() => overlayRef.current?.openMenu()}
+          type="button"
+        >
+          <span className="mob-bar" />
+          <span className="mob-bar" />
+          <span className="mob-bar" />
+        </button>
+      </div>
+    </div>
+    <OverlayMenu
+      ref={overlayRef}
+      sectionRefs={sectionRefs}
+      onNavigate={setActive}
+    />
+  </>
+)}
     </>
   );
 }
